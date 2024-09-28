@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block 'body' %}
+
+   
+ <div class="menupage">
+    <h1>Menu</h1>
+
+
+   {% for section in sections %}
+   
+   <h2>{{section.name}}</h2>
+     
+    <div class="overlay2 d-flex menu-category align-items-center justify-content-center flex-wrap menucontainer">
+
+    
+
+    {% for item in section.items.all %}
+
+     <div class="col-md-3 mb-4 flex-wrap1 menuitem1 ">
+    <div class="card h-100 ">
+      
+      <div  class="menu-item-image rounded-5" style="heigth: 70%;">
+       <img src="{{item.Photo.url}}" alt="Menu Item Image" class="card-img-top img-fluid ">
+
+      </div>
+      <div class="card-body">
+      <div style="heigth: 40%;">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <p class="card-text"> ${{ item.price }}</p>
+      <input type="number" id="quantity-{{ item.id }}" name="quantity" min="1" value="1">
+                <button onclick="addToCart({{ item.id }})">Add to Cart</button>
+      </div>
+
+       
+      
+    </div>
+   
+  </div>
+   </div>
+
+    {% endfor %}
+        </div>
+
+       
+       
+
+
+
+    {% endfor %}                    
+
+    
+    <a href="{% url 'view_cart' %}">View Cart</a>
+</div>
+    <script>
+        function addToCart(itemId) {
+            const quantity = document.getElementById(`quantity-${itemId}`).value;
+            $.post("{% url 'add_to_cart' %}", {
+                item_id: itemId,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            }).done(function(data) {
+                alert("Item added to cart");
+            });
+        }
+    </script>
+
+
+{% endblock %}

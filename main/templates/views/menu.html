@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block 'body' %}
+
+
+<div class="d-flex flex-column">
+
+
+<div class="d-flex align-items-center justify-content-center menu">
+    <div class="overlay2 d-flex align-items-center justify-content-center">
+          <h1 class=" lobster-regular">Menu</h1>
+    </div>
+</div>
+
+
+
+
+ {% for section in sections %}
+ <div class="menupg overlay2 d-flex">
+ {% if forloop.counter|divisibleby:2 %}
+     <div class="second-div d-flex flex-column align-items-center justify-content-center " style="width: 60%;">
+        <div class="image-container">
+            <img src="{% static 'images/Biryani1.jpg' %}" alt="Image" class="img-fluid rounded "> 
+        </div>
+     </div>   
+    <div class="d-flex flex-column align-items-centre justify-content-center " style="width:40%">
+        <h1>{{ section.name }}</h1>
+       
+        <div>
+            <ol> 
+             {% for item in section.items.all %}
+                            <li class="">{{ item.name }} - ${{ item.price }}</li>
+                        {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+{% else %}
+ 
+    <div class="d-flex flex-column align-items-centre justify-content-center " style="width:40%;margin-left:110px;">
+        <h1>{{ section.name }}</h1>
+       
+        <div>
+            <ol> 
+             {% for item in section.items.all %}
+                            <li class="">{{ item.name }} - ${{ item.price }}</li>
+                        {% endfor %}
+            </ol>
+        </div>
+    </div>
+     <div class="second-div d-flex flex-column align-items-center justify-content-center " style="width: 50%;">
+        <div class="image-container">
+            <img src="{% static 'images/Biryani1.jpg' %}" alt="Image" class="img-fluid rounded "> 
+        </div>
+     </div>  
+
+
+{% endif %}
+</div>
+{% endfor %}
+
+
+</div>
+
+
+{% endblock %}

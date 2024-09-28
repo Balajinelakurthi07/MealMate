@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block 'body' %}
+
+  <div class="container">
+  <div class="d-flex flex-wrap">
+
+  {% for blog in blog_items %}
+
+
+  <div class="card mb-3 blog-item rounded-6">
+  <div class="blog-img rounded-6">
+   <img src="{{ blog.imgsrc }}" class="card-img-top rounded-9" alt="...">
+  </div>
+  <div class="card-body">
+   <a href="{% url 'blog_detail' link=blog.link %}">
+    <h2 class="card-title">{{ blog.headline }}</h2>
+    </a>
+  </div>
+  </div>
+{% endfor %}
+
+  </div>
+  </div>
+
+
+  
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <ul>
+        {% for item_id, item in cart.items %}
+            <li>{{ item.quantity }} x {{ item.name }} - ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'place_order' %}">
+        {% csrf_token %}
+        <label for="table_number">Table Number:</label>
+        <input type="number" name="table_number" required>
+        <button type="submit">Order</button>
+    </form>
+</body>
+</html>

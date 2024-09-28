@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+</head>
+<body>
+    <h1>Order Summary</h1>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.quantity }} x {{ item.menu_item.name }} - ${{ item.menu_item.price }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ order.get_total_price }}</p>
+    <p>Table Number: {{ order.table_number }}</p>
+    <button onclick="alert('Proceed to payment gateway')">Proceed to Payment</button>
+</body>
+</html>

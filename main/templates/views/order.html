@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Order</title>
+</head>
+<body>
+    <h1>Your Order</h1>
+    {% if order.items.all %}
+        <ul>
+            {% for item in order.items.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        <p>Total Bill: ${{ order.total_bill }}</p>
+    {% else %}
+        <p>No items in your order yet.</p>
+    {% endif %}
+    <a href="{% url 'create_order' %}">Add More Items</a>
+</body>
+</html>

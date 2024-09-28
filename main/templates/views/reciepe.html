@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meal Plan</title>
+</head>
+<body>
+    <h1>Today's Meal Plan</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="target_calories">Target Calories:</label>
+        <input type="number" id="target_calories" name="target_calories" value="{{ target_calories }}" required>
+        <label for="diet">Diet:</label>
+        <select id="diet" name="diet">
+            <option value="" {% if diet == "" %}selected{% endif %}>None</option>
+            <option value="vegetarian" {% if diet == "vegetarian" %}selected{% endif %}>Vegetarian</option>
+            <option value="vegan" {% if diet == "vegan" %}selected{% endif %}>Vegan</option>
+            <option value="paleo" {% if diet == "paleo" %}selected{% endif %}>Paleo</option>
+            <option value="ketogenic" {% if diet == "ketogenic" %}selected{% endif %}>Ketogenic</option>
+            <option value="gluten free" {% if diet == "gluten free" %}selected{% endif %}>Gluten Free</option>
+            <!-- Add other diet options as needed -->
+        </select>
+        <button type="submit">Get Meal Plan</button>
+    </form>
+    
+    {% if meals %}
+        <h2>Meals</h2>
+        <ul>
+            {% for meal in meals %}
+                <li>
+                    <h3>{{ meal.title }}</h3>
+                    <p>Ready in {{ meal.readyInMinutes }} minutes</p>
+                    <p>Servings: {{ meal.servings }}</p>
+                    <a href="{{ meal.sourceUrl }}">View Recipe</a>
+                    <img src="https://spoonacular.com/recipeImages/{{ meal.id }}-312x231.{{ meal.imageType }}" alt="{{ meal.title }}">
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Nutrients</h2>
+        <p>Calories: {{ nutrients.calories }}</p>
+        <p>Carbohydrates: {{ nutrients.carbohydrates }}g</p>
+        <p>Fat: {{ nutrients.fat }}g</p>
+        <p>Protein: {{ nutrients.protein }}g</p>
+    {% else %}
+        <p>No meals found. Please enter your target calories and diet preferences.</p>
+    {% endif %}
+</body>
+</html>
