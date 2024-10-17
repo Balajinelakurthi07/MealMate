@@ -8,9 +8,9 @@
 
 
 
-<div class="second d-flex login">
- <div class="second-div d-flex align-items-center justify-content-center" style="width:60%;">
- <img src="{% static 'images/our-story-01.jpg.webp' %}"/>
+<div class="d-flex login register">
+ <div class="second-div d-flex align-items-center justify-content-center register1" style="width:60%;">
+ <img src="{% static 'images/register.jpg' %}"/>
 
     </div>
 
@@ -20,13 +20,17 @@
        
 
 
-         <form action="" style="width: 23rem;" method="post">
+         <form action="" style="width: 23rem; margin-top:40px" method="post">
             {% csrf_token %}
-            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">REGISTER</h3>
+            
 
-            <div data-mdb-input-init class="form-outline mb-4">
+            <div data-mdb-input-init class="form-outline mb-4" >
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">REGISTER</h3>
               <input type="text" id="form2Example18" class="form-control form-control-lg" name="username" />
-              <label class="form-label" for="form2Example18">Email address</label>
+              <label class="form-label" for="form2Example18">Name</label>
+              <input type="text" id="form2Example19" class="form-control form-control-lg" name="email" />
+              <label class="form-label" for="form2Example19">Email address</label>
+              
             </div>
 
             <div data-mdb-input-init class="form-outline mb-4">
@@ -53,6 +57,3 @@
 
 {% endblock %}
 
-
-{% block 'footer' %}
-{% endblock %}

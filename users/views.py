@@ -41,6 +41,7 @@ class Registerview(View):
 
     def post(self, request):
         username = request.POST.get('username')
+        email=request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
@@ -52,7 +53,7 @@ class Registerview(View):
             messages.error(request, 'Username already taken.')
             return render(request, 'views/register.html')
 
-        user = User.objects.create_user(username=username, password=password1)
+        user = User.objects.create_user(username=username, password=password1,email=email)
         user = authenticate(username=username, password=password1)
         if user is not None:
             login(request, user)

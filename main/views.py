@@ -20,13 +20,18 @@ def menu(request):
     sections = MenuSection.objects.prefetch_related('items').all()
     return render(request,"views/menu.html",{'sections': sections})
 
-@method_decorator(login_required, name='dispatch')
+
 class Reservationcreateview(View):
     def get(self, request):
         tables = Table.objects.filter(is_reserved=False)
         return render(request, 'views/reservation.html', {'tables': tables})
 
     def post(self, request):
+        if not request.user.is_authenticated:
+            # If not logged in, show an error message and reload the form
+            messages.error(request, 'You must be logged in to make a reservation.')
+            tables = Table.objects.filter(is_reserved=False)
+            return render(request, 'views/reservation.html', {'tables': tables})
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
