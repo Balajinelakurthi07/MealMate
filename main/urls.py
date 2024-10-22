@@ -1,4 +1,4 @@
-from .views import home,menu,Reservationcreateview,meal_plan,scrap,blog_detail
+from .views import home,menu,Reservationcreateview,meal_plan,scrap,blog_detail,remove_from_cart,clear_cart
 from django.urls import path
 from . import views
 
@@ -16,5 +16,7 @@ urlpatterns=[
     path('order_detail/<int:order_id>/', views.order_detail, name='order_detail'),
      path('blog/', scrap, name='blog'),
      path('blogdetail/<path:link>/', blog_detail, name='blog_detail'),
+      path('remove-from-cart/<str:item_id>/', remove_from_cart, name='remove_from_cart'),
+    path('clear-cart/', clear_cart, name='clear_cart'),
     
 ]

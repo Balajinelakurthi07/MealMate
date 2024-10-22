@@ -7,21 +7,29 @@
 {% block 'body' %}
 
    
- <div class="menupage">
-    <h1>Menu</h1>
-
-
-   {% for section in sections %}
-   
-   <h1 class="blur-background">{{section.name}}</h1>
-     
-   
+ <div class="menupage" style="background-color:">
+ <div class="d-flex align-items-center justify-content-center menu">
+    <div class="overlay2 d-flex align-items-center justify-content-center">
+          <h1 class="bungee-shade-regular">Menu</h1>
+    </div>
+</div>
 
     
 
-    {% for item in section.items.all %}
-     <div class="overlay2 d-flex menu-category align-items-center justify-content-center flex-wrap menucontainer">
+   {% for section in sections %}
+   
+   <div class="shadow-text">
+   
+   <h1 class="blur-background shadow-text" style="color:red;">{{section.name}}</h1>
+     
+   </div>
+    
+    <div class="overlay2 d-flex menu-category align-items-center justify-content-center flex-wrap menucontainer" style="background-image: url({% static 'images/meal-plan.jpg' %});"
+>
 
+
+    {% for item in section.items.all %}
+     
      <div class="col-md-3 mb-4 flex-wrap1 menuitem1 ">
      <div class="card h-100 ">
       
@@ -34,7 +42,7 @@
       <h5 class="card-title">{{ item.name }}</h5>
       <p class="card-text"> ${{ item.price }}</p>
       <input type="number" id="quantity-{{ item.id }}" name="quantity" min="1" value="1">
-                <button onclick="addToCart({{ item.id }})">Add to Cart</button>
+                <button class="btn btn-primary" onclick="addToCart({{ item.id }})">Add to Cart</button>
       </div>
 
        
@@ -43,17 +51,19 @@
    
   </div>
    </div>
- </div>
+
 
     {% endfor %}
        
-       
+        </div>
        
 
 
 
     {% endfor %}                    
     <a href="{% url 'view_cart' %}">View Cart</a>
+  
+   
 </div>
     <script>
         function addToCart(itemId) {

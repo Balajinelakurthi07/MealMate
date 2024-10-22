@@ -41,7 +41,6 @@ class Order(models.Model):
     table_number = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def get_total_price(self):
         total = sum(item.quantity * item.menu_item.price for item in self.items.all())

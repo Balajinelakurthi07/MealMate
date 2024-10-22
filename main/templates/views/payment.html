@@ -1,17 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment</title>
-</head>
-<body>
-    <h1>Order Summary</h1>
-    <ul>
-        {% for item in order.items.all %}
-            <li>{{ item.quantity }} x {{ item.menu_item.name }} - ${{ item.menu_item.price }}</li>
-        {% endfor %}
-    </ul>
-    <p>Total: ${{ order.get_total_price }}</p>
-    <p>Table Number: {{ order.table_number }}</p>
-    <button onclick="alert('Proceed to payment gateway')">Proceed to Payment</button>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block 'body' %}
+   <div class="order-div">
+    <div class="order-div1">
+        <h1 class="blur-background">Thank You for Your Order!</h1>
+        <p class="text-muted">Your order will be served shortly. Please relax and enjoy the ambiance of our restaurant.</p>
+    </div>
+    
+    <div class="my-4 order-div2">
+        <h2 class="text-success">Order Summary</h2>
+        <ul class="list-unstyled">
+            {% for item in order.items.all %}
+                <li style=""><strong>{{ item.quantity }} x {{ item.menu_item.name }}</strong> - ${{ item.menu_item.price }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Total:</strong> ${{ order.get_total_price }}</p>
+        <p><strong>Table Number:</strong> {{ order.table_number }}</p>
+    
+    
+    <button onclick="alert('Proceed to payment gateway')" class="btn btn-primary btn-md" style="margin-top:20px;">
+        Proceed to Payment
+    </button>
+    </div>
+
+    </div>
+</div>
+
+{% endblock %}

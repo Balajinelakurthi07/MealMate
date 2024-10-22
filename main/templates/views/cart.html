@@ -1,20 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cart</title>
-</head>
-<body>
-    <h1>Your Cart</h1>
-    <ul>
-        {% for item_id, item in cart.items %}
-            <li>{{ item.quantity }} x {{ item.name }} - ${{ item.price }}</li>
-        {% endfor %}
-    </ul>
-    <form method="post" action="{% url 'place_order' %}">
-        {% csrf_token %}
-        <label for="table_number">Table Number:</label>
-        <input type="number" name="table_number" required>
-        <button type="submit">Order</button>
-    </form>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block 'body' %}
+
+
+<div class="cart-div">
+<div class="cart-div1" style="">
+    <h1 class="mb-4 blur-background" style="margin-left:500px;">Your Cart</h1>
+    </div>
+    <div class="table-responsive cart-div2">
+       <table class="table table-bordered align-middle table-striped" style="border: 3px solid black;">
+    <thead style="background-color: #f8d7da; border: 3px solid black;">
+        <tr class="table-info">
+            <th scope="col" style="border: 3px solid black;">Item Name</th>
+            <th scope="col" style="border: 3px solid black;">Price</th>
+            <th scope="col" style="border: 3px solid black;">Quantity</th>
+            <th scope="col" style="border: 3px solid black;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if cart %}
+            {% for item_id, item in cart.items %}
+                <tr>
+                    <td style="border: 3px solid black;">{{ item.name }}</td>
+                    <td style="border: 3px solid black;">${{ item.price }}</td>
+                    <td style="border: 3px solid black;">{{ item.quantity }}</td>
+                    <td style="border: 3px solid black;">
+                        <form action="{% url 'remove_from_cart' item_id %}" method="POST" class="d-inline-block">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4" class="text-center" style="border: 3px solid black;">Your cart is empty.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+    </div>
+
+    {% if cart %}
+        <div class="d-flex justify-content-between align-items-center mt-4 cart-div3">
+            <h4 class="mb-0">Total: ${{ total_price }}</h4>
+
+            <div class="d-flex gap-2">
+                <form action="{% url 'clear_cart' %}" method="POST" class="d-inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Clear Cart</button>
+                </form>
+
+                <form action="{% url 'place_order' %}" method="POST" class="d-inline-block">
+                   <label> enter table number</label>
+<input type="number" name="table_number" required>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Proceed to Payment</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+{% endblock %}

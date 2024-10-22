@@ -136,8 +136,22 @@ def add_to_cart(request):
 
 def view_cart(request):
     cart = request.session.get('cart', {})
-    return render(request, 'views/cart.html', {'cart': cart})
-
+    total_price = 0
+    
+    # Calculate total price
+    for item_id, item in cart.items():
+        total_price += float(item['price']) * item['quantity']
+    
+    return render(request, 'views/cart.html', {'cart': cart, 'total_price': total_price})
+def remove_from_cart(request, item_id):
+    cart = request.session.get('cart', {})
+    if item_id in cart:
+        del cart[item_id]
+        request.session['cart'] = cart  # Update the session cart
+    return redirect('view_cart')    
+def clear_cart(request):
+    request.session['cart'] = {}  # Clear the session cart
+    return redirect('view_cart')
 def place_order(request):
     if request.method == 'POST':
         table_number = request.POST.get('table_number')

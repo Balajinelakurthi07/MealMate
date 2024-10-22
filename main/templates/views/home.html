@@ -8,19 +8,47 @@
   <div id="carouselExampleAutoplaying" class="carousel slide h-100" data-bs-ride="carousel">
  
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'images/menu.jpg'%}" class="d-block w-100" alt="...">
-      <button>book</button>
-    </div>
-    <div class="carousel-item position-relative item1">
+    
+    <div class="carousel-item position-relative item1 active ">
     <div class="overlay"></div>
-   <div class="carousel-caption d-flex justify-content-center align-items-center text-center">
-        <h1 class="text-uppercase">Welcome</h1>
+   <div class="carousel-caption d-flex-column justify-content-center align-items-center text-center">
+        <div>
+        <h1 class="text-uppercase tangerine-bold" style="font-size:70px;">Welcome to </h1>
+        </div>
+        <div>
+        <h1 class="text-uppercase rubik-dirt-regular" style="font-size:100px;">MealMate</h1>
+        </div>
+        <div>
+        <button class="btn btn-danger" style="width: 150px; font-size: 30px;height: 80px;"><a href="{% url 'menu1' %}">Menu</a></button> 
+        </div>
     </div>
    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/res3.jpg'%}" class="d-block w-100" alt="...">
+   <div class="carousel-item position-relative item2 ">
+    <div class="overlay"></div>
+   <div class="carousel-caption d-flex-column justify-content-center align-items-center text-center" >
+        <div>
+        <h1 class="text-uppercase tangerine-bold" style="font-size:70px; ">Make</h1>
+        </div>
+        <div>
+        <h1 class="text-uppercase tangerine-bold" style="font-size:70px;">Reservation</h1>
+        </div>
+        <div>
+         <button  class="btn btn-danger" style="width: 300px; font-size: 30px;height: 80px;"><a href="{% url 'reservation' %}">Reservation</a></button> 
+        </div>
     </div>
+   </div>
+     <div class="carousel-item position-relative item3 ">
+    <div class="overlay"></div>
+   <div class="carousel-caption d-flex-column justify-content-center align-items-center text-center">
+        <div>
+        <h1 class="text-uppercase tangerine-bold" style="font-size:70px;"> our new Feature </h1>
+        </div>
+        
+        <div>
+        <button href="{% url 'meal_plan' %}"class="btn btn-danger" style="width: 300px; font-size: 30px;height: 80px;"><a href="{% url 'meal_plan' %}">Generate Meal-Plan</a></button> 
+        </div>
+    </div>
+   </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -41,19 +69,73 @@
             
             
             <span class="tit2 t-center">
-Italian Restaurant
+Indian Restaurant
 </span>
 <h3 class="tit3 t-center m-b-35 m-t-5">
 Welcome
 </h3>
-<p class="t-center m-b-22 size3 m-l-r-auto">
-Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia, nisl ante egestas mi, ac facilisis ligula sem id neque.
+<p class="t-center m-b-22 size3 m-l-r-auto" style="color: black; font-size:18px;">
+Indulge in the authentic flavors of India. From rich curries to flavorful spices, every dish is crafted with tradition and love, bringing a true taste of home to your table.
 </p>
         </div>
     </div>
     <div class="second-div m" style="width: 40%;">
         <div class="image-container">
-            <img src="{% static 'images/our-story-01.jpg.webp' %}" alt="Image" class="img-fluid rounded ">
+            <img src="{% static 'images/home-welcome-icon1.jpg' %}" alt="Image" class="img-fluid rounded ">
+            
+            
+        </div>
+    </div>
+</div>
+
+<div class="second d-flex">
+    
+    <div class="second-div m" style="width: 40%;">
+        <div class="image-container" style="margin-left:100px;">
+            <img src="{% static 'images/home-meal-plan-icon.jpg' %}" alt="Image" class="img-fluid rounded ">
+            
+            
+        </div>
+    </div>
+    <div class="first-div d-flex fdiv" style="width: 60%;">
+        <div class="restaurant-info p-3">
+            <span class="tit2 t-center" style="margin-left:10px;">
+             Tailored Meals 
+            </span>
+<p class="t-center m-b-22 size3 m-l-r-auto" style="color: black; font-size:18px;">
+Unlock a personalized meal plan crafted just for you. Based on your calorie needs, we offer balanced meals that blend nutrition with delicious flavors, helping you meet your health goals without compromising on taste.
+</p>
+
+
+              <a href="{% url 'meal_plan' %}" class="btn btn-danger tit3 t-center m-b-35 m-t-5" style="width: 300px; font-size: 30px;margin-left:125px;height: 90px;">Generate Meal-Plan</a> 
+             
+ 
+
+        </div>
+    </div>
+</div>
+
+<div class="second d-flex">
+    <div class="first-div d-flex fdiv" style="width: 60%;">
+        <div class="restaurant-info p-3">
+            
+             <span class="tit2 t-center" style="margin-left:70px;">
+              View Our Menu
+            </span>
+<p class="t-center m-b-22 size3 m-l-r-auto" style="color: black; font-size:18px;">
+Discover our carefully curated menu, featuring a variety of dishes that celebrate India's rich culinary heritage. From flavorful curries to aromatic rice and fresh breads, we have something to delight every palate.
+</p>
+
+
+              <a href="{% url 'menu1' %}" class="btn btn-danger tit3 t-center m-b-35 m-t-5" style="width: 300px; font-size: 30px;margin-left:170px;height: 70px;">Menu</a> 
+
+ 
+
+        </div>
+    </div>
+    <div class="second-div m" style="width: 40%;">
+        <div class="image-container">
+            <img src="{% static 'images/home-menu-icon.jpg' %}" alt="Image" class="img-fluid rounded ">
             
             
         </div>
@@ -61,11 +143,33 @@ Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, 
 </div>
 
 
-   <div class="third"> 
+<div class="second d-flex">
+   
+    <div class="second-div m" style="width: 40%;">
+        <div class="image-container"  style="margin-left:100px;">
+            <img src="{% static 'images/home-reservation-icon.jpg' %}" alt="Image" class="img-fluid rounded ">
+            
+            
+        </div>
+    </div>
 
-  
-  </div>
-   <div class="main"> 
-  <h1>hello</h1>
-  </div>
+     <div class="first-div d-flex fdiv" style="width: 60%;">
+        <div class="restaurant-info p-3">
+            
+             <span class="tit2 t-center" style="margin-left:70px;">
+              Make Reservation
+            </span>
+<p class="t-center m-b-22 size3 m-l-r-auto" style="color: black; font-size:18px;">
+Reserve your table today and enjoy an unforgettable dining experience. Immerse yourself in the warm, inviting ambiance, where every detail is crafted to enhance your journey through the rich flavors of India. Whether it’s an intimate meal or a celebration, our restaurant provides the perfect setting for any occasion.
+</p>
+
+
+              <a href="{% url 'reservation' %}" class="btn btn-danger tit3 t-center m-b-35 m-t-5" style="width: 300px; font-size: 30px;margin-left:200px;height: 70px;">Reservation</a> 
+
+ 
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
